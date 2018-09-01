@@ -1,12 +1,12 @@
 <template>
   <div class="chat-panel">
-    <panel-list></panel-list>
+    <chat-list></chat-list>
     <chat-main></chat-main>
   </div>
 </template>
 
 <script>
-import PanelList from './PanelList'
+import ChatList from './ChatList'
 import ChatMain from './ChatMain'
 export default {
   name: 'chat-panel',
@@ -15,7 +15,7 @@ export default {
     }
   },
   components: {
-    PanelList,
+    ChatList,
     ChatMain
   }
 }

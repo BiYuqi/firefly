@@ -1,6 +1,6 @@
 <template>
   <el-dialog
-    title="关于"
+    title="打赏"
     width="40%"
     :close-on-click-modal="false"
     :visible.sync="donationFlag"

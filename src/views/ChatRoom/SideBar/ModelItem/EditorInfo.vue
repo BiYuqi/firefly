@@ -1,6 +1,6 @@
 <template>
   <el-dialog
-    title="关于"
+    title="修改信息"
     width="40%"
     :close-on-click-modal="false"
     :visible.sync="editorFlag"
@@ -9,7 +9,15 @@
     <div class="intro">
       <p>修改头像</p>
       <div class="avatar-preview">
-        <img src="~assets/logo.png" alt="">
+        <el-upload
+          class="avatar-uploader"
+          action=""
+          :show-file-list="false"
+          :on-success="handleAvatarSuccess"
+          :before-upload="beforeAvatarUpload">
+          <img v-if="imageUrl" :src="imageUrl" class="avatar">
+          <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+        </el-upload>
       </div>
     </div>
     <div class="intro">
@@ -42,14 +50,14 @@ export default {
       } else {
         callback()
       }
-    };
+    }
     const validatePass2 = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请输入新密码'))
       } else {
         callback()
       }
-    };
+    }
     return {
       editorFlag: false,
       form: {
@@ -71,22 +79,29 @@ export default {
             validator: validatePass2
           }
         ]
-      }
+      },
+      imageUrl: require('../../../../assets/logo.png')
     }
   },
   methods: {
     okChange (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          alert('submit!');
+          alert('submit!')
         } else {
-          console.log('error submit!!');
-          return false;
+          console.log('error submit!!')
+          return false
         }
       })
     },
-    resetForm(formName) {
+    resetForm (formName) {
       this.$refs[formName].resetFields()
+    },
+    handleAvatarSuccess (res, file) {
+
+    },
+    beforeAvatarUpload (file) {
+
     }
   }
 }
@@ -102,6 +117,7 @@ export default {
   img{
     width: 100px;
     height: 100px;
+    border: 1px dashed rgb(26, 141, 194);
   }
 }
 </style>

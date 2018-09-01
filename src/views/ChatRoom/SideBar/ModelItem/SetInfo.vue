@@ -1,6 +1,6 @@
 <template>
   <el-dialog
-    title="关于"
+    title="设置"
     width="40%"
     custom-class="firefly-set-wrap"
     :close-on-click-modal="false"
@@ -36,22 +36,48 @@
     </div>
     <div class="intro">
       <p>提示音</p>
-      <el-radio-group v-model="tipModel" size="small">
+      <el-radio-group v-model="tipModel" style="width: 100%">
         <div class="firefly-radio-box">
-          <el-radio label="1" border>备选项1</el-radio>
-          <el-radio label="2" border>备选项2</el-radio>
-          <el-radio label="3" border>备选项1</el-radio>
+          <el-radio class="firefly-radio" label="1" border>默认</el-radio>
+          <el-radio class="firefly-radio" label="2" border>苹果</el-radio>
+          <el-radio class="firefly-radio" label="3" border>电脑QQ</el-radio>
         </div>
         <div class="firefly-radio-box">
-          <el-radio label="4" border>备选项2</el-radio>
-          <el-radio label="5" border>备选项1</el-radio>
-          <el-radio label="6" border>备选项2</el-radio>
+          <el-radio class="firefly-radio" label="4" border>手机QQ</el-radio>
+          <el-radio class="firefly-radio" label="5" border>陌陌</el-radio>
+          <el-radio class="firefly-radio" label="6" border>探探</el-radio>
         </div>
       </el-radio-group>
     </div>
     <div class="intro">
       <p>背景图</p>
-      <img class="firefly-user-avatar" src="~assets/basic-bg3.jpg" alt="">
+      <el-upload
+        class="avatar-uploader"
+        action=""
+        :show-file-list="false"
+        :on-success="handleAvatarSuccess"
+        :before-upload="beforeAvatarUpload">
+        <img v-if="imageUrl" :src="imageUrl" class="firefly-user-avatar">
+        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+      </el-upload>
+    </div>
+    <div class="intro">
+      <p>主题颜色</p>
+      <div class="current">
+        <el-color-picker
+          v-model="selectBg"
+          show-alpha>
+        </el-color-picker>
+      </div>
+    </div>
+    <div class="intro">
+      <p>文字颜色</p>
+      <div class="current">
+        <el-color-picker
+          v-model="selectTx"
+          show-alpha>
+        </el-color-picker>
+      </div>
     </div>
   </el-dialog>
 </template>
@@ -63,10 +89,19 @@ export default {
       setFlag: false,
       soundFlag: true,
       speakFlag: true,
-      tipModel: '1'
+      tipModel: '1',
+      selectBg: 'rgb(74, 144, 226)',
+      selectTx: '#666',
+      imageUrl: require('../../../../assets/basic-bg3.jpg')
     }
   },
   methods: {
+    handleAvatarSuccess (res, file) {
+
+    },
+    beforeAvatarUpload (file) {
+
+    }
   }
 }
 </script>
@@ -76,17 +111,37 @@ export default {
   .intro{
     margin-bottom: 25px;
     p{
-      font-weight: 800;
+      font-weight: 900;
       margin-bottom: 10px;
+      font-size: 16px;
+      color: #000;
     }
     .firefly-user-avatar{
       width: 98%;
+      cursor: pointer;
+      transition: all .24s;
+      &:hover{
+        filter: blur(2px);
+      }
     }
     .sound-set{
       margin-right: 30px;
     }
     .firefly-radio-box{
       margin-bottom: 15px;
+      
+      .firefly-radio{
+        width: 30%;
+      }
+    }
+    .current{
+      display: flex;
+      justify-content: flex-start;
+      .c-c {
+        width: 20px;
+        height: 20px;
+        margin-right: 14px;
+      }
     }
   }
 }

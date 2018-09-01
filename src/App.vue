@@ -29,11 +29,4 @@ html, body{
   width: 100%;
   height: 100%;
 }
-// fixed SetInfo.vue style bug
-.firefly-set-wrap{
-  .el-dialog__body{
-    height: 500px;
-    overflow-y: auto;
-  }
-}
 </style>

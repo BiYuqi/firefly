@@ -1,5 +1,5 @@
 <template>
-  <svg class="icon" 
+  <svg class="icon"
     :class="iconClass"
     :style="{
       fontSize: size + 'px',
