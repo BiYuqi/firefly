@@ -26,7 +26,7 @@ export default {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: url('../assets/basic-bg.jpg') no-repeat;
+  background: url('../assets/basic-bg2.jpg') no-repeat;
   background-size: cover;
   position: relative;
   .chat-root{
@@ -46,7 +46,7 @@ export default {
     width: 70%;
     height: 85%;
     filter: blur(10px);
-    background-image: url('../assets/basic-bg.jpg');
+    background-image: url('../assets/basic-bg2.jpg');
     background-position: center top;
     background-size: cover;
     background-attachment: fixed;
