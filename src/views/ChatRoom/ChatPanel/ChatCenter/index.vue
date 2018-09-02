@@ -1,14 +1,17 @@
 <template>
   <div class="chat-list">
     <search-box></search-box>
+    <chat-list></chat-list>
   </div>
 </template>
 
 <script>
 import SearchBox from './SearchBox'
+import ChatList from '@/views/ChatRoom/ChatList'
 export default {
   components: {
-    SearchBox
+    SearchBox,
+    ChatList
   }
 }
 </script>

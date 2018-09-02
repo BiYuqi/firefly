@@ -3,7 +3,9 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-const state = {}
+const state = {
+  isLogin: true
+}
 const store = new Vuex.Store({
   state
 })

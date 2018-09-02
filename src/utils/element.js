@@ -1,10 +1,14 @@
 import Vue from 'vue'
 import {
   Dialog,
+  Dropdown,
+  DropdownMenu,
+  DropdownItem,
   Input,
   Checkbox,
   Switch,
   Button,
+  Popover,
   Tabs,
   TabPane,
   Tooltip,
@@ -18,6 +22,10 @@ import {
 } from 'element-ui'
 
 Vue.use(Input)
+Vue.use(Dropdown)
+Vue.use(DropdownMenu)
+Vue.use(DropdownItem)
+Vue.use(Popover)
 Vue.use(Checkbox)
 Vue.use(Dialog)
 Vue.use(Button)

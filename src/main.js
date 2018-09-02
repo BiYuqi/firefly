@@ -3,6 +3,7 @@ import Vue from 'vue'
 import SvgIcon from '@/components/SvgIcon'
 import App from './App'
 import router from './router'
+import store from './store'
 
 import '@/utils/element'
 import 'element-ui/lib/theme-chalk/index.css'
@@ -15,6 +16,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

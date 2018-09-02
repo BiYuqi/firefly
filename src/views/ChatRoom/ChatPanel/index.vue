@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import ChatList from './ChatList'
+import ChatList from './ChatCenter'
 import ChatMain from './ChatMain'
 export default {
   name: 'chat-panel',
