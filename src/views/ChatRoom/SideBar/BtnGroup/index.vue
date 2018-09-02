@@ -22,9 +22,9 @@
 
 <script>
 import { openPage } from '@/utils/tools'
-import AboutMe from '../ModelItem/AboutMe'
-import DonationMe from '../ModelItem/DonationMe'
-import SetMe from '../ModelItem/SetInfo'
+import AboutMe from '@/views/ModelItem/AboutMe'
+import DonationMe from '@/views/ModelItem/DonationMe'
+import SetMe from '@/views/ModelItem/SetInfo'
 export default {
   data () {
     return {

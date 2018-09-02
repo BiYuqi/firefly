@@ -92,7 +92,7 @@ export default {
       tipModel: '1',
       selectBg: 'rgb(74, 144, 226)',
       selectTx: '#666',
-      imageUrl: require('../../../../assets/basic-bg3.jpg')
+      imageUrl: require('../../assets/basic-bg3.jpg')
     }
   },
   methods: {

@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import EditorInfo from '../ModelItem/EditorInfo'
+import EditorInfo from '@/views/ModelItem/EditorInfo'
 export default {
   data () {
     return {}

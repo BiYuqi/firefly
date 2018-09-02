@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import DashBoard from '@/views/DashBoard'
+import Main from '@/views/Main'
 
 Vue.use(Router)
 
@@ -10,7 +10,7 @@ export default new Router({
     {
       path: '/',
       name: 'dashboard',
-      component: DashBoard
+      component: Main
     }
   ]
 })

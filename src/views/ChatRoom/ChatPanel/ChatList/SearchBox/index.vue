@@ -9,17 +9,28 @@
       class="firefly-plus"
       name="plus"
       size="36"
-      color="hsla(0,0%,100%,.5)">
+      color="hsla(0,0%,100%,.5)"
+      @click.native="createGroup">
     </svg-icon>
+    <create-group ref="create"></create-group>
   </div>
 </template>
 
 <script>
+import CreateGroup from '@/views/ModelItem/CreateGroup'
 export default {
   data () {
     return {
       searchName: ''
     }
+  },
+  methods: {
+    createGroup () {
+      this.$refs.create.createFlag = true
+    }
+  },
+  components: {
+    CreateGroup
   }
 }
 </script>

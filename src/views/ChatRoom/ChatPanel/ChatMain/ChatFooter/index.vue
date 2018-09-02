@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import LoginRegist from '@/views/Login'
+import LoginRegist from '@/views/LoginRegist'
 export default {
   data () {
     return {}

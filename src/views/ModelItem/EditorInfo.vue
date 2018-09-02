@@ -80,7 +80,7 @@ export default {
           }
         ]
       },
-      imageUrl: require('../../../../assets/logo.png')
+      imageUrl: require('../../assets/logo.png')
     }
   },
   methods: {
