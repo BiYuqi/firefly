@@ -29,7 +29,7 @@ export default {
   justify-content: space-around;
   img{
     width: 200px;
-    height: 400px;
+    height: 300px;
   }
 }
 </style>
