@@ -29,4 +29,13 @@ html, body{
   width: 100%;
   height: 100%;
 }
+::-webkit-scrollbar {
+    display: none;
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,.2)
+}
+::-webkit-scrollbar-track {
+    background: hsla(0,0%,100%,.1)
+}
 </style>

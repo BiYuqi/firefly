@@ -1,13 +1,13 @@
 <template>
   <div class="chat-room">
     <side-bar></side-bar>
-    <chat-panel></chat-panel>
+    <chat-layout></chat-layout>
   </div>
 </template>
 
 <script>
 import SideBar from './SideBar'
-import ChatPanel from './ChatPanel'
+import ChatLayout from './ChatLayout'
 export default {
   name: 'chat-room',
   data () {
@@ -16,7 +16,7 @@ export default {
   },
   components: {
     SideBar,
-    ChatPanel
+    ChatLayout
   }
 }
 </script>

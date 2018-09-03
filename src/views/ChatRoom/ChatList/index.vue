@@ -36,11 +36,12 @@ export default {
     transition: background-color .24s;
     height: 90px;
     padding: 10px 16px;
+    cursor: pointer;
     img{
       width: 48px;
       height: 48px;
       border-radius: 50%;
-      display: block;
+      min-width: 48px;
     }
     &.focus{
       background-color: rgba(6, 147, 227, 0.4);

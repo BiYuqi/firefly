@@ -27,8 +27,8 @@
 
 <script>
 import LoginRegist from '@/views/LoginRegist'
-import ExpressCom from '@/views/ChatRoom/Expression'
-import MsgTypes from '@/views/ChatRoom/MsgType'
+import ExpressCom from '@/views/ToolItem/Expression'
+import MsgTypes from '@/views/ToolItem/MsgType'
 export default {
   data () {
     return {

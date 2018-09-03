@@ -1,23 +1,36 @@
 # firefly
 
 > A simple online chat platform based on nodeJs mongodb express and vueJs
-# Now
-##### 前端
+# Current Status
+##### 前端(vue全家桶 + element-ui)
 - [x] 整体项目搭建
 - [x] 设置页面
 - [x] 修改信息页面
 - [x] 登录注册页面
 - [ ] 搜索
-- [ ] 对话列表
-- [ ] 聊天对话
+- [x] 对话列表
+- [x] 聊天对话
 - [x] 聊天表情
 - [x] 聊天输入框
-##### 后端
-- [ ] 暂未开发...
-- [ ] 登录，注册，socket, 任重而道远......
-
+- [x] 添加好友
+- [ ] 聊天群好友列表
+- [ ] 分享群(好友)
+- [ ] 主题设置, 保存
+##### 后端(node + mongodb + express)
+- [ ] 登录
+- [ ] 注册
+- [ ] 头像修改(照片上传)
+- [ ] 密码修改
+- [ ] 昵称修改
+- [ ] 表情相关逻辑
+- [ ] 群聊
+- [ ] 私聊
+- [ ] 管设置理员
+- [ ] 禁言
+- [ ] 定期清理僵尸账号
 # Preview
 ### Layout
+![](http://oq4hkch8e.bkt.clouddn.com/home-page%E5%89%AF%E6%9C%AC.jpg)
 ![](http://oq4hkch8e.bkt.clouddn.com/home-login%E5%89%AF%E6%9C%AC.jpg)
 ![](http://oq4hkch8e.bkt.clouddn.com/home-unlogin2.jpg)
 ![](http://oq4hkch8e.bkt.clouddn.com/login2.jpg)

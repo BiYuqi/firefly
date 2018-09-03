@@ -48,7 +48,7 @@ export default {
           this.$refs.aboutme.aboutFlag = true
           break
         case 'money':
-          this.$refs.donation.donationFlag = true
+          // this.$refs.donation.donationFlag = true
           break
         case 'set':
           this.$refs.set.setFlag = true
