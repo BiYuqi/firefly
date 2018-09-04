@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import io from 'socket.io-client'
 
 import SvgIcon from '@/components/SvgIcon'
 import App from './App'
@@ -11,6 +12,7 @@ import '@/styles/main.css'
 
 Vue.component('svg-icon', SvgIcon)
 Vue.config.productionTip = false
+// io('http://localhost:8976')
 
 /* eslint-disable no-new */
 new Vue({
