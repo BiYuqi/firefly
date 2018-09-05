@@ -19,7 +19,7 @@ mongoose.connection.on('connected', async () => {
     /**
      * 创建默认群组
      */
-    const createGroup = Group.create({
+    const createGroup = await Group.create({
       name: config.default_group_name,
       avatar: config.de,
       isDefault: true
