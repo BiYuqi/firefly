@@ -1,7 +1,10 @@
 <template>
   <div class="avatar-part" @click="showInfo">
     <img src="~assets/logo.png" alt="">
-    <span class="badge offline">
+    <span
+      class="badge"
+      :class="$store.state.connect ? 'online' : 'offline'"
+      :title="$store.state.connect ? '在线' : '离线'">
       <i></i>
     </span>
     <editor-info ref="editor"></editor-info>

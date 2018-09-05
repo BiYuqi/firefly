@@ -4,10 +4,17 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state = {
-  isLogin: true
+  isLogin: true,
+  connect: false
+}
+const mutations = {
+  setConnect (state, res) {
+    state.connect = res
+  }
 }
 const store = new Vuex.Store({
-  state
+  state,
+  mutations
 })
 
 export default store

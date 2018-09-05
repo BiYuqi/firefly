@@ -9,9 +9,10 @@
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js",
-    "app": "supervisor main.js"
+    "app": "cd server && supervisor main.js"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.3",
     "element-ui": "^2.4.6",
