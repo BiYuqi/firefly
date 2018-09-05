@@ -1,6 +1,6 @@
 <template>
   <div class="firefly-chat-body">
-    <div class="firefly-msg-list" :class="{self: i % 2 === 0}" v-for="i in 10" :key="i">
+    <div class="firefly-msg-list" :class="{self: i % 2 === 0}" v-for="i in 2" :key="i">
       <img class="avatar" @click="add(i)" :style="avatar" src="~assets/logo.png" alt="">
       <div class="firefly-msg-right">
         <div class="firefly-msg-top">
@@ -8,7 +8,7 @@
           <span class="time">5分钟前</span>
         </div>
         <div class="firefly-msg-content">
-          <div class="text">第三方斯蒂芬是否第三方斯蒂芬是否第三方斯蒂芬是否第三第三方斯蒂芬是否第三方斯蒂芬是否第三方斯蒂芬是否第三方斯蒂芬是否第三方斯蒂芬是否第三方斯蒂芬是否第三方斯蒂芬是否第三方斯蒂芬是否方斯蒂芬是否第三方斯蒂芬是否第三方斯蒂芬是否</div>
+          <div class="text">第三方斯蒂三方第三方斯三方斯蒂三方斯否第三方斯蒂三方斯否斯否</div>
         </div>
       </div>
     </div>
@@ -58,7 +58,7 @@ export default {
 .firefly-msg-list{
   text-align: initial;
   display: flex;
-  margin-right: 40px;
+  margin-right: 6%;
   margin-bottom: 10px;
   .avatar{
     min-width: 44px;
@@ -74,8 +74,9 @@ export default {
       margin-left: 8px;
     }
     .name{
-      font-size: 12px;
+      font-size: 14px;
       color: #333;
+      font-weight: 600;
     }
     .time{
       font-size: 12px;
@@ -107,7 +108,7 @@ export default {
   &.self{
     flex-direction: row-reverse;
     margin-right: 0;
-    margin-left: 40px;
+    margin-left: 6%;
     .firefly-msg-content{
       border-top-left-radius: 10px;
       border-top-right-radius: 0;

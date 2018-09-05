@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
-const config = require('../config/config')
-const Group = require('./group')
+const config = require('./config/config')
+const Group = require('./models/group')
 
-const app = require('../app')
+const app = require('./app')
 mongoose.Promise = global.Promise
 mongoose.connect(config.db, {
   useNewUrlParser: true,
@@ -15,7 +15,7 @@ mongoose.connection.on('connected', () => {
    * 默认群组
    */
   Group.findOne({isDefault: true}).then((err, group) => {
-    console.log(err, group)
+    console.log(err, group, config.default_group_name)
     if (!err) {
       Group.create({
         name: config.default_group_name,

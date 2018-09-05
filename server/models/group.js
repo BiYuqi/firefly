@@ -9,9 +9,7 @@ const group = new Schema({
   name: {
     type: String,
     trim: true,
-    unique: true,
-    match: /^[0-9a-zA-Z]{1, 8}$/,
-    index: true
+    unique: true
   },
   avatar: {
     type: String

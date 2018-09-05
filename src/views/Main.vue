@@ -32,8 +32,8 @@ export default {
   .chat-root{
     position: absolute;
     top: 10%;
-    left: 15%;
-    width: 70%;
+    left: 20%;
+    width: 60%;
     height: 85%;
     border-radius: 10px;
     box-shadow: 0 0 40px rgba(0, 0, 0, .5);

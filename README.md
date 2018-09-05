@@ -1,6 +1,24 @@
 # firefly
 
 > A simple online chat platform based on nodeJs mongodb express and vueJs
+
+# Use
+```js
+// 前台
+git clone https://github.com/BiYuqi/firefly.git
+
+cd firefly
+
+npm i
+
+npm run dev
+
+// 后台
+npm i supervisor -g // 如果已经安装过，此步骤可省略
+
+npm run app
+```
+
 # Current Status
 ##### 前端(vue全家桶 + element-ui)
 - [x] 整体项目搭建
