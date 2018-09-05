@@ -12,7 +12,8 @@ import '@/styles/main.css'
 
 Vue.component('svg-icon', SvgIcon)
 Vue.config.productionTip = false
-// io('http://localhost:8976')
+// test socket.io connect
+io('http://localhost:8976')
 
 /* eslint-disable no-new */
 new Vue({
