@@ -1,6 +1,6 @@
 <template>
   <div class="firefly-chat-footer">
-    <div class="login-ok" v-if="$store.state.isLogin">
+    <div class="login-ok" v-if="$store.state.hasToken">
       <div class="emoji">
         <express-com
           @expression="expression">

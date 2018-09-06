@@ -59,6 +59,7 @@
 </template>
 
 <script>
+import { userLogin, userRegister} from '@/api/userInfo'
 export default {
   data () {
     const validateUser = (rule, value, callback) => {
@@ -109,10 +110,18 @@ export default {
       this.tabIndex =  index
     },
     loginSubmit (formName) {
-      this.$message.success('暂未对接口')
+      userLogin({}).then(res => {
+        this.$message.success(res.data.msg)
+      }).catch(e => {
+        this.$message.success(e)
+      })
     },
     registerSubmit (register) {
-      this.$message.success('暂未对接口')
+      userRegister({}).then(res => {
+        this.$message.success(res.data.msg)
+      }).catch(e => {
+        this.$message.success(e)
+      })
     }
   }
 }
