@@ -59,12 +59,15 @@
 </template>
 
 <script>
-import { userLogin, userRegister} from '@/api/userInfo'
+import { userLogin, userRegister } from '@/api/userInfo'
+import { getSha1, checkName, checkPass } from '@/utils/crypto'
 export default {
   data () {
     const validateUser = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请输入用户名'))
+      } if (!checkName(value)) {
+        callback(new Error('用户名4~16位, 数字字母下划线组成'))
       } else {
         callback()
       }
@@ -72,6 +75,8 @@ export default {
     const validatePass = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请输入密码'))
+      } if (!checkPass(value)) {
+        callback(new Error('密码6~16位, 必须由数字字母组成'))
       } else {
         callback()
       }
@@ -107,20 +112,36 @@ export default {
   },
   methods: {
     tabChange (index) {
-      this.tabIndex =  index
+      this.tabIndex = index
     },
     loginSubmit (formName) {
-      userLogin({}).then(res => {
-        this.$message.success(res.data.msg)
-      }).catch(e => {
-        this.$message.success(e)
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          const formData = Object.assign({}, this.loginForm)
+          formData.password = getSha1(this.loginForm.password)
+          userLogin(formData).then(res => {
+            this.$message.success(res.data.msg)
+          }).catch(e => {
+            this.$message.success(e)
+          })
+        } else {
+          this.$message.success('参数不合法!')
+          return false
+        }
       })
     },
     registerSubmit (register) {
-      userRegister({}).then(res => {
-        this.$message.success(res.data.msg)
-      }).catch(e => {
-        this.$message.success(e)
+      this.$refs[register].validate((valid) => {
+        if (valid) {
+          userRegister(this.registerForm).then(res => {
+            this.$message.success(res.data.msg)
+          }).catch(e => {
+            this.$message.success(e)
+          })
+        } else {
+          this.$message.success('参数不合法!')
+          return false
+        }
       })
     }
   }

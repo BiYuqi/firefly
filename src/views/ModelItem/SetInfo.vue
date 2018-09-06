@@ -129,7 +129,6 @@ export default {
     }
     .firefly-radio-box{
       margin-bottom: 15px;
-      
       .firefly-radio{
         width: 30%;
       }

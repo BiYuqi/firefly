@@ -25,8 +25,7 @@ export default {
     }
   },
   methods: {
-    addPeople () {
-      
+    addPeople () { 
     }
   }
 }

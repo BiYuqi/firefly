@@ -2,7 +2,7 @@
 
 > A simple online chat platform based on nodeJs mongodb express and vueJs
 
-# Use
+# Usage
 ```js
 // 前台
 git clone https://github.com/BiYuqi/firefly.git
