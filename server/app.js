@@ -7,6 +7,8 @@ const app = express()
 const server = require('http').createServer(app)
 const io = socket(server)
 
+const rouerIndex = require('./routes/user')
+
 app.all('*', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*')
   res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild')
@@ -18,8 +20,6 @@ app.all('*', (req, res, next) => {
     next()
   }
 })
-
-const rouerIndex = require('./routes/user')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))

@@ -21,10 +21,7 @@ const register = async (req, res) => {
       msg: '用户名重复, 请重新填写'
     })
   }
-  const newUser = await User.create({
-    username,
-    password
-  })
+  const newUser = await User.create({ username, password })
   if (!newUser) {
     return res.send({
       code: '500',
