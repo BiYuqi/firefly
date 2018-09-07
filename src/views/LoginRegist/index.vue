@@ -3,6 +3,7 @@
     width="450px"
     :close-on-click-modal="false"
     :visible.sync="loginRegister"
+    @close="onClose"
     class="login-dialog"
     append-to-body
     lock-scroll>
@@ -59,8 +60,13 @@
 </template>
 
 <script>
+import platform from 'platform'
+import Cookie from 'js-cookie'
+
+import getRandomAvatar from '@/utils/getRandomAvatar'
 import { userLogin, userRegister } from '@/api/userInfo'
 import { getSha1, checkName, checkPass } from '@/utils/crypto'
+
 export default {
   data () {
     const validateUser = (rule, value, callback) => {
@@ -86,11 +92,18 @@ export default {
       tabIndex: 0,
       loginForm: {
         username: '',
-        password: ''
+        password: '',
+        os: platform.os.family,
+        browser: platform.name,
+        description: platform.description
       },
       registerForm: {
         username: '',
-        password: ''
+        password: '',
+        avatar: getRandomAvatar(),
+        os: platform.os.family,
+        browser: platform.name,
+        description: platform.description
       },
       rules: {
         username: [
@@ -114,6 +127,10 @@ export default {
     tabChange (index) {
       this.tabIndex = index
     },
+    onClose () {
+      this.$refs.loginForm.resetFields()
+      this.$refs.registerForm.resetFields()
+    },
     loginSubmit (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
@@ -133,8 +150,15 @@ export default {
     registerSubmit (register) {
       this.$refs[register].validate((valid) => {
         if (valid) {
-          userRegister(this.registerForm).then(res => {
+          const formData2 = Object.assign({}, this.registerForm)
+          formData2.password = getSha1(this.registerForm.password)
+          userRegister(formData2).then(res => {
             this.$message.success(res.data.msg)
+            // reset form
+            Cookie.set('un', res.data.data.username)
+            this.$refs.registerForm.resetFields()
+            // redirect to login tab
+            this.tabIndex = 0
           }).catch(e => {
             this.$message.success(e)
           })

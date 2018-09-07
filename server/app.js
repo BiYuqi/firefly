@@ -29,6 +29,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use('/system', rouerIndex)
 
 io.on('connection', (socket) => {
+  global.socket = socket
   console.log('有人连接socket', 'socket-id', socket.id)
 })
 

@@ -26,12 +26,12 @@ export const checkGroup = (group) => {
  */
 
 export const checkName = (name) => {
-  return /^([\u4e00-\u9fa5]|[_a-zA-Z0-9]){4, 16}$/.test(name)
+  return /^([\u4e00-\u9fa5]|[_a-zA-Z0-9]){4,16}$/.test(name)
 }
 /**
  * 校验密码
  * @method checkPass
  */
 export const checkPass = (pass) => {
-  return /^(?=.*?[0-9])(?=.*?[a-z])[0-9a-z]{6, 16}$/.test(pass)
+  return /^(?=.*?[0-9])(?=.*?[a-z])[0-9a-z]{6,16}$/.test(pass)
 }
