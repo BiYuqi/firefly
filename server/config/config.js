@@ -14,6 +14,7 @@ module.exports = {
 
   // jwt secret
   jwtSecret: 'firefly',
+  jwtTime: '24h',
 
   // redis
   redisHost: '127.0.0.1',

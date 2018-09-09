@@ -138,6 +138,8 @@ export default {
           formData.password = getSha1(this.loginForm.password)
           userLogin(formData).then(res => {
             this.$message.success(res.data.msg)
+            localStorage.setItem('uinfo', JSON.stringify(res.data.data))
+            localStorage.setItem('token', res.data.token)
           }).catch(e => {
             this.$message.success(e)
           })
