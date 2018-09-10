@@ -1,5 +1,8 @@
+const jwt = require('jsonwebtoken')
 const User = require('../models/user')
 const Group = require('../models/group')
+const Socket = require('../models/socket')
+const config = require('../config/config')
 
 /**
  * 用户注册信息
@@ -63,7 +66,7 @@ const register = async (req, res) => {
  * @param {*} res
  */
 const login = async (req, res) => {
-  const {username, password} = req.body
+  const {username, password, os, browser, description} = req.body
   if (!username || !password) {
     return res.send({
       msg: '请输入用户名账号, 密码'
@@ -93,8 +96,26 @@ const login = async (req, res) => {
   groups.forEach((group) => {
     global.socket.join(group._id)
   })
-  res.send({
-    data: groups,
+
+  const info = Object.assign({}, req.body, {loginAt: +new Date()})
+  // 过期时间2小时
+  const token = jwt.sign(info, config.jwtSecret, {expiresIn: config.jwtTime})
+
+  await Socket.findOneAndUpdate({id: global.socket}, {
+    user: user._id,
+    os,
+    browser,
+    description
+  })
+  return res.send({
+    data: {
+      _id: user._id,
+      avatar: user.avatar,
+      username: user.username,
+      groups
+    },
+    token,
+    code: 200,
     msg: '收到登陆请求, 正在陆续开发中...'
   })
 }

@@ -6,6 +6,10 @@ const bodyParser = require('body-parser')
 const app = express()
 const server = require('http').createServer(app)
 const io = socket(server)
+const checkToken = require('./middleware/checkToken')
+const rouerIndex = require('./routes/user')
+
+const Socket = require('./models/socket')
 
 const rouerIndex = require('./routes/user')
 
@@ -25,12 +29,22 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 // app.use(cookieParse())
 
+app.use(checkToken)
+
 // router
 app.use('/system', rouerIndex)
 
-io.on('connection', (socket) => {
+io.on('connection', async (socket) => {
   global.socket = socket
+  await Socket.create({
+    id: socket.id,
+    ip: socket.request.connection.remoteAddress
+  })
   console.log('有人连接socket', 'socket-id', socket.id)
+  socket.on('disconnect', async () => {
+    await Socket.findOneAndRemove({id: socket.id})
+    console.log('有人断开连接 socket-id', socket.id)
+  })
 })
 
 module.exports = server
