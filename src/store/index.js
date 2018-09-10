@@ -7,7 +7,9 @@ Vue.use(Vuex)
 const state = {
   isLogin: true,
   connect: false,
-  hasToken: Cookie.get('ut') || ''
+  hasToken: Cookie.get('ut') || '',
+  currentGroup: '',
+  groupList: Cookie.get('uinfo') || []
 }
 const mutations = {
   setConnect (state, res) {

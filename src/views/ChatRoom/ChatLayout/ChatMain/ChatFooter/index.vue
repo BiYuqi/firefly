@@ -12,10 +12,10 @@
         </msg-types>
       </div>
       <div class="text-input">
-        <el-input v-model="sendMsg" placeholder="大侠，留步说两句..."></el-input>
+        <el-input v-model="sendMsgContent" placeholder="大侠，留步说两句..."></el-input>
       </div>
       <div class="send">
-        <svg-icon name="send" size="30" color="#aaa"></svg-icon>
+        <svg-icon name="send" size="30" color="#aaa" @click.native="sendMsg"></svg-icon>
       </div>
     </div>
     <div class="un-login" v-else>
@@ -29,10 +29,12 @@
 import LoginRegist from '@/views/LoginRegist'
 import ExpressCom from '@/views/ToolItem/Expression'
 import MsgTypes from '@/views/ToolItem/MsgType'
+
+import sendMessage from '@/utils/sendMessage'
 export default {
   data () {
     return {
-      sendMsg: ''
+      sendMsgContent: ''
     }
   },
   methods: {
@@ -44,6 +46,12 @@ export default {
     },
     msgType (type) {
       this.$message.success(type)
+    },
+    sendMsg () {
+      if (!this.sendMsgContent) {
+        this.$message.error('消息不能为空')
+      }
+      // sendMessage()
     }
   },
   components: {
