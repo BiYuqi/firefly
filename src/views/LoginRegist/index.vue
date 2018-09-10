@@ -137,9 +137,15 @@ export default {
           const formData = Object.assign({}, this.loginForm)
           formData.password = getSha1(this.loginForm.password)
           userLogin(formData).then(res => {
+            if (res.data.code === 200) {
+              Cookie.set('uinfo', JSON.stringify(res.data.data))
+              Cookie.set('ut', res.data.token)
+              Cookie.set('un', res.data.data.username)
+              this.$store.commit('setToken')
+              this.onClose()
+              this.loginRegister = false
+            }
             this.$message.success(res.data.msg)
-            localStorage.setItem('uinfo', JSON.stringify(res.data.data))
-            localStorage.setItem('token', res.data.token)
           }).catch(e => {
             this.$message.success(e)
           })
@@ -156,8 +162,6 @@ export default {
           formData2.password = getSha1(this.registerForm.password)
           userRegister(formData2).then(res => {
             this.$message.success(res.data.msg)
-            // reset form
-            Cookie.set('un', res.data.data.username)
             this.$refs.registerForm.resetFields()
             // redirect to login tab
             this.tabIndex = 0

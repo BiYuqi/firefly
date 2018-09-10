@@ -7,11 +7,10 @@ const app = express()
 const server = require('http').createServer(app)
 const io = socket(server)
 const checkToken = require('./middleware/checkToken')
-const rouerIndex = require('./routes/user')
+const rouerUser = require('./routes/user')
+const routerGroup = require('./routes/group')
 
 const Socket = require('./models/socket')
-
-const rouerIndex = require('./routes/user')
 
 app.all('*', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*')
@@ -32,7 +31,8 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(checkToken)
 
 // router
-app.use('/system', rouerIndex)
+app.use('/system', rouerUser)
+app.use('/group', routerGroup)
 
 io.on('connection', async (socket) => {
   global.socket = socket

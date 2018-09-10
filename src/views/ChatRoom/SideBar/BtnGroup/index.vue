@@ -21,6 +21,8 @@
 </template>
 
 <script>
+import Cookie from 'js-cookie'
+
 import { openPage } from '@/utils/tools'
 import AboutMe from '@/views/ModelItem/AboutMe'
 import DonationMe from '@/views/ModelItem/DonationMe'
@@ -52,6 +54,12 @@ export default {
           break
         case 'set':
           this.$refs.set.setFlag = true
+          break
+        case 'shut':
+          Cookie.remove('uinfo')
+          Cookie.remove('ut')
+          Cookie.remove('un')
+          this.$store.commit('setToken', '')
           break
         default:
           break

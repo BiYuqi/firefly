@@ -7,11 +7,14 @@ Vue.use(Vuex)
 const state = {
   isLogin: true,
   connect: false,
-  hasToken: localStorage.getItem('token') || Cookie.get('token') || ''
+  hasToken: Cookie.get('ut') || ''
 }
 const mutations = {
   setConnect (state, res) {
     state.connect = res
+  },
+  setToken (state, res) {
+    state.hasToken = res || Cookie.get('ut')
   }
 }
 const store = new Vuex.Store({

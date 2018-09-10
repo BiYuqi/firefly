@@ -97,11 +97,11 @@ const login = async (req, res) => {
     global.socket.join(group._id)
   })
 
-  const info = Object.assign({}, req.body, {loginAt: +new Date()})
   // 过期时间2小时
+  const info = Object.assign({}, req.body, {loginAt: +new Date()})
   const token = jwt.sign(info, config.jwtSecret, {expiresIn: config.jwtTime})
 
-  await Socket.findOneAndUpdate({id: global.socket}, {
+  await Socket.findOneAndUpdate({id: global.socket.id}, {
     user: user._id,
     os,
     browser,
@@ -116,7 +116,7 @@ const login = async (req, res) => {
     },
     token,
     code: 200,
-    msg: '收到登陆请求, 正在陆续开发中...'
+    msg: '登录成功, 来愉快地交流吧!'
   })
 }
 module.exports = {
