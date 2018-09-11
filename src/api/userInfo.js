@@ -22,3 +22,11 @@ export const userRegister = (data = {}) => {
     data
   })
 }
+
+export const chatList = (params) => {
+  return request({
+    url: '/group/getMyGroup',
+    method: 'GET',
+    params
+  })
+}

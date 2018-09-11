@@ -11,7 +11,6 @@ import 'element-ui/lib/theme-chalk/index.css'
 import '@/styles/main.css'
 
 Vue.component('svg-icon', SvgIcon)
-Vue.config.productionTip = false
 // test socket.io connect
 socket.on('connect', function () {
   console.log('socket连接成功')
@@ -22,6 +21,8 @@ socket.on('disconnect', () => {
   console.log('socket连接失败')
   store.commit('setConnect', false)
 })
+Vue.config.productionTip = false
+Vue.prototype.sockets = socket
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

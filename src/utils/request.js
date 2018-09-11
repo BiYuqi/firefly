@@ -12,7 +12,7 @@ const service = axios.create({
 
 service.interceptors.request.use(config => {
   config.headers['Content-Type'] = 'application/json; charset=UTF-8'
-  config.headers['Authorization'] = Cookie.get('uut') || ''
+  config.headers['Authorization'] = Cookie.get('ut') || ''
   return config
 }, error => {
   Promise.reject(error)

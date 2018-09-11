@@ -1,10 +1,14 @@
 <template>
   <div class="firefly-linkman-group">
-    <div class="firefly-chat-item focus">
-      <img src="~assets/logo.png">
+    <div class="firefly-chat-item"
+      v-for="(item, index) in staticChatList"
+      :key="index"
+      :class="{focus: isFocus || currentGroup === item._id}"
+      @click="chatNow(item)">
+      <img :src="item.avatar">
       <div class="firefly-right">
         <div class="firefly-name-time">
-          <p class="name">firefly</p>
+          <p class="name">{{ item.name }}</p>
           <p class="time">12:09</p>
         </div>
         <div class="firefly-view-unread">
@@ -19,9 +23,41 @@
 </template>
 
 <script>
+import { chatList } from '@/api/userInfo'
+import Cookie from 'js-cookie'
 export default {
   data () {
-    return {}
+    return {
+      staticChatList: [],
+      currentGroup: ''
+    }
+  },
+  methods: {
+    async getChatList (id = '') {
+      let group = await chatList({id: id})
+      if (group) {
+        this.staticChatList = group.data.data
+        console.log(this.staticChatList)
+      }
+    },
+    chatNow (item) {
+      Cookie.set('c_g', item._id)
+      this.currentGroup = item._id
+      console.log(item)
+    }
+  },
+  computed: {
+    isFocus () {
+      return this.staticChatList.length === 1
+    }
+  },
+  created () {
+    const ut = Cookie.get('ut')
+    if (ut) {
+      this.getChatList(this.$store.state.userId)
+    } else {
+      this.getChatList()
+    }
   }
 }
 </script>

@@ -92,6 +92,8 @@ const login = async (req, res) => {
   user.lastLoginTime = Date.now()
   await user.save()
 
+  global.socket.user = user._id
+
   const groups = await Group.find({members: user})
   groups.forEach((group) => {
     global.socket.join(group._id)

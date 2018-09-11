@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const config = require('./config/config')
 const Group = require('./models/group')
+const Socket = require('./models/socket')
 
 const app = require('./app')
 mongoose.Promise = global.Promise
@@ -32,7 +33,8 @@ mongoose.connection.on('connected', async () => {
     console.log(`Create defaultGroup success ${group}`)
   }
   // Start server
-  app.listen(config.port, () => {
+  app.listen(config.port, async () => {
+    await Socket.remove({})
     console.log(`server is listent at ${config.port}`)
   })
 })

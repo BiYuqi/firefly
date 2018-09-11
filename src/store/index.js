@@ -9,7 +9,8 @@ const state = {
   connect: false,
   hasToken: Cookie.get('ut') || '',
   currentGroup: '',
-  groupList: Cookie.get('uinfo') || []
+  groupList: Cookie.get('uinfo') || [],
+  userId: (Cookie.get('uinfo') && JSON.parse(Cookie.get('uinfo'))._id) || ''
 }
 const mutations = {
   setConnect (state, res) {

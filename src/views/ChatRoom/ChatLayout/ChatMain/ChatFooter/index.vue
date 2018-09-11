@@ -30,7 +30,7 @@ import LoginRegist from '@/views/LoginRegist'
 import ExpressCom from '@/views/ToolItem/Expression'
 import MsgTypes from '@/views/ToolItem/MsgType'
 
-import sendMessage from '@/utils/sendMessage'
+import Cookie from 'js-cookie'
 export default {
   data () {
     return {
@@ -48,11 +48,23 @@ export default {
       this.$message.success(type)
     },
     sendMsg () {
+      this.sockets.removeAllListeners()
       if (!this.sendMsgContent) {
         this.$message.error('消息不能为空')
       }
-      // sendMessage()
+      this.sockets.emit('sendMsg', {
+        to: this.$store.state.userId,
+        type: 'text',
+        content: this.sendMsgContent
+      })
+      this.sockets.on('message', (data) => {
+        console.log(data)
+      })
+      this.sendMsgContent = ''
     }
+  },
+  created() {
+    this.sockets.removeAllListeners()
   },
   components: {
     LoginRegist,

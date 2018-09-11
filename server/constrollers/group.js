@@ -3,7 +3,8 @@ const User = require('../models/user')
 
 const getMyGroup = async (req, res) => {
   const { id } = req.query
-  let user = await User.findOne({ _id: id })
+  const q = id ? { _id: id } : {}
+  let user = await User.findOne(q)
   if (user) {
     let group = await Group.find({members: user})
     return res.send({

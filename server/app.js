@@ -11,6 +11,7 @@ const rouerUser = require('./routes/user')
 const routerGroup = require('./routes/group')
 
 const Socket = require('./models/socket')
+const sendMessage = require('./constrollers/sendMessage')
 
 app.all('*', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*')
@@ -40,6 +41,7 @@ io.on('connection', async (socket) => {
     id: socket.id,
     ip: socket.request.connection.remoteAddress
   })
+  sendMessage(socket)
   console.log('有人连接socket', 'socket-id', socket.id)
   socket.on('disconnect', async () => {
     await Socket.findOneAndRemove({id: socket.id})
