@@ -12,7 +12,7 @@ const sendMessage = (socket) => {
   socket.on('sendMsg', async (data) => {
     const { to, type, content } = data
     let groupId = ''
-    let userId = ''
+    // let userId = ''
     if (isValid(to)) {
       groupId = to
       const group = await Group.findOne({ _id: to })
@@ -20,11 +20,12 @@ const sendMessage = (socket) => {
         console.log('群组不存在 %s ', groupId)
       }
     } else {
-      userId = to.replace(global.socket.user, '')
-      console.log(userId)
+      // userId = to.replace(global.socket.user, '')
+      console.log('socket.detail', socket)
     }
-    console.log(to, type, content)
-    socket.emit('message', data)
+    if (groupId) {
+      socket.broadcast.to(groupId).emit('message', {type, content})
+    }
   })
 }
 

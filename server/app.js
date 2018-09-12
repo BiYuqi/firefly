@@ -42,7 +42,6 @@ io.on('connection', async (socket) => {
     ip: socket.request.connection.remoteAddress
   })
   sendMessage(socket)
-  console.log('有人连接socket', 'socket-id', socket.id)
   socket.on('disconnect', async () => {
     await Socket.findOneAndRemove({id: socket.id})
     console.log('有人断开连接 socket-id', socket.id)

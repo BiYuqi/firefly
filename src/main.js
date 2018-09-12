@@ -12,22 +12,23 @@ import '@/styles/main.css'
 
 Vue.component('svg-icon', SvgIcon)
 // test socket.io connect
-socket.on('connect', function () {
-  console.log('socket连接成功')
-  store.commit('setConnect', true)
-})
-
-socket.on('disconnect', () => {
-  console.log('socket连接失败')
-  store.commit('setConnect', false)
-})
 Vue.config.productionTip = false
-Vue.prototype.sockets = socket
+Vue.prototype.socket = socket
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   store,
   components: { App },
-  template: '<App/>'
+  template: '<App/>',
+  created () {
+    this.socket.on('connect', function () {
+      console.log('socket连接成功')
+      store.commit('setConnect', true)
+    })
+    this.socket.on('disconnect', () => {
+      console.log('socket连接失败')
+      store.commit('setConnect', false)
+    })
+  }
 })

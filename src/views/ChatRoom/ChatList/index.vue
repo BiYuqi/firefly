@@ -37,13 +37,11 @@ export default {
       let group = await chatList({id: id})
       if (group) {
         this.staticChatList = group.data.data
-        console.log(this.staticChatList)
       }
     },
     chatNow (item) {
       Cookie.set('c_g', item._id)
       this.currentGroup = item._id
-      console.log(item)
     }
   },
   computed: {

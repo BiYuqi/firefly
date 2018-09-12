@@ -3,7 +3,8 @@
 */
 const baseFilter = [
   '/system/login',
-  '/system/register'
+  '/system/register',
+  '/group/getMyGroup'
 ]
 const checkPath = (path) => {
   let flag = false

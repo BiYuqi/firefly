@@ -48,23 +48,21 @@ export default {
       this.$message.success(type)
     },
     sendMsg () {
-      this.sockets.removeAllListeners()
+      this.socket.removeAllListeners()
       if (!this.sendMsgContent) {
         this.$message.error('消息不能为空')
+        return
       }
-      this.sockets.emit('sendMsg', {
-        to: this.$store.state.userId,
+      this.socket.on('message', (data) => {
+        console.log(data)
+      })
+      this.socket.emit('sendMsg', {
+        to: Cookie.get('c_g'),
         type: 'text',
         content: this.sendMsgContent
       })
-      this.sockets.on('message', (data) => {
-        console.log(data)
-      })
       this.sendMsgContent = ''
     }
-  },
-  created() {
-    this.sockets.removeAllListeners()
   },
   components: {
     LoginRegist,
