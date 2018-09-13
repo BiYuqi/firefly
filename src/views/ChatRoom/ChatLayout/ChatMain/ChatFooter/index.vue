@@ -56,8 +56,9 @@ export default {
       this.socket.on('message', (data) => {
         console.log(data)
       })
-      this.socket.emit('sendMsg', {
+      this.socket.emit('msg', {
         to: Cookie.get('c_g'),
+        from: this.$store.state.userId,
         type: 'text',
         content: this.sendMsgContent
       })

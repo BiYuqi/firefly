@@ -11,6 +11,7 @@ const rouerUser = require('./routes/user')
 const routerGroup = require('./routes/group')
 
 const Socket = require('./models/socket')
+const Group = require('./models/group')
 const sendMessage = require('./constrollers/sendMessage')
 
 app.all('*', (req, res, next) => {

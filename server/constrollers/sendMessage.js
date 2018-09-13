@@ -1,31 +1,45 @@
 const { isValid } = require('mongoose').Types.ObjectId
 const Group = require('../models/group')
-// const User = require('../models/user')
-// const Message = require('../models/message')
+const User = require('../models/user')
+const Message = require('../models/message')
 // const Socket = require('../models/socket')
-// const xss = require('xss')
+const xss = require('xss')
 
 // const FirstFetchMsgCount = 20
 // const EachFetchMsgCount = 40
 
-const sendMessage = (socket) => {
-  socket.on('sendMsg', async (data) => {
-    const { to, type, content } = data
+const sendMessage = async (socket) => {
+  const groups = await Group.find({isDefault: true})
+  socket.join(groups._id)
+  socket.on('msg', async (data) => {
+    const { to, from, type, content } = data
+
     let groupId = ''
-    // let userId = ''
+    let messageContent = xss(content)
     if (isValid(to)) {
       groupId = to
-      const group = await Group.findOne({ _id: to })
-      if (!group) {
-        console.log('群组不存在 %s ', groupId)
-      }
-    } else {
-      // userId = to.replace(global.socket.user, '')
-      console.log('socket.detail', socket)
     }
-    if (groupId) {
-      socket.broadcast.to(groupId).emit('message', {type, content})
+    let message
+    try {
+      message = await Message.create({
+        from: from,
+        to,
+        type,
+        content: content
+      })
+    } catch (e) {}
+
+    const user = await User.findOne({_id: from})
+    const messageData = {
+      _id: message._id,
+      createTime: message.createTime,
+      from: user.toObject(),
+      to,
+      type,
+      content: messageContent
     }
+    socket.to(groupId).emit('message', messageData)
+    socket.emit('message', messageData)
   })
 }
 
